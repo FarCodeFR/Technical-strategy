@@ -6,7 +6,7 @@ Ce dépôt documente les **décisions d'architecture** de Looply sous forme d'AD
 
 - **Cours :** Stratégie technique — M2 Lead Developer Front-End, ECV Nantes (groupe B)
 - **Auteurs :** Julie (Produit / Business), Émilie (Architecte / Infra), Vic (Sécurité / Conformité), Timothé (Tech Lead)
-- **Dernière mise à jour :** 04/11/2026
+- **Dernière mise à jour :** 27/11/2026
 
 ---
 
@@ -82,14 +82,18 @@ Performance · Compétences · Coût global · Support · Disponibilité · Fiab
 
 ## 4. Livrables et avancement
 
-| Livrable                                        | Fichier                                        | Statut                                                         |
-| ----------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| ADR global (contexte, options, décision finale) | `docs/adr.md`                                  | 🟡 En cours — options 2 et 3 à compléter, décision à rédiger   |
-| Architecture cible 6 mois / 1 an / 3 ans        | `docs/Architecture-cible.md`                   | 🟡 En cours — budgets, déclencheurs et cible 3 ans à finaliser |
-| ADR-0001 — Choix de la stack technique          | `docs/adr/0001-stack-technique.md` | 🔴 Fichier vide — à rédiger                                    |
-| ADR-0002 — Service de paiement                  | `docs/adr/0002-service-paiement.md`            | 🟡 Gabarit posé — à compléter                                  |
-| ADR-0003 — Infrastructure / Kubernetes          | `docs/adr/0003-infrastructure-kubernetes.md`   | ⚪ À créer                                                     |
-| Restitution finale                              | —                                              | ⚪ Séance 6                                                    |
+| Livrable | Fichier | Statut |
+| -------- | ------- | ------ |
+| ADR global (contexte, options, décision finale) | `docs/adr.md` | 🟡 En cours — options 2 et 3 à compléter, décision à rédiger |
+| Architecture cible 6 mois / 1 an / 3 ans | `docs/Architecture-cible.md` | 🟡 En cours — budgets, déclencheurs et cible 3 ans à finaliser |
+| ADR-0001 — Choix de la stack technique | `docs/adr/0001-stack-technique.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0002 — Service de paiement | `docs/adr/0002-service-paiement.md` | 🟡 Contexte rédigé — parties prenantes, options et décision à compléter |
+| ADR-0003 — Infrastructure / Kubernetes | `docs/adr/0003-infrastructure-kubernetes.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0004 — Géolocalisation | `docs/adr/0004-geolocalisation.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0005 — Architecture hexagonale | `docs/adr/0005-architecture-hexagonale.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0006 — Données personnelles, sécurité, RGPD | `docs/adr/0006-donnees-personnelles-securite.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0007 — Stratégie de rendu | `docs/adr/0007-strategie-de-rendu.md` | 🟡 Gabarit posé — à compléter |
+| Restitution finale | — | ⚪ Séance 6 |
 
 Légende : 🔴 à faire · 🟡 en cours · 🟢 terminé · ⚪ non démarré
 
@@ -245,8 +249,10 @@ Critères de choix : performance, coût, sécurité, scalabilité, compétences,
 - [ ] `docs/adr.md` complet : options 1 à 3 détaillées et **décision finale** renseignée
 - [ ] Un ADR rédigé et statué pour **chaque élément** du registre (§ 5)
 - [ ] `0001-stack-technique.md` complété
-- [ ] `0002-service-paiement.md` complété (option retenue, conséquences, réexamen)
-- [ ] ADR infrastructure / Kubernetes créé
+- [ ] `0002-service-paiement.md` complété (option retenue, impacts, réexamen)
+- [x] ADR infrastructure / Kubernetes créé
+- [ ] `0003-infrastructure-kubernetes.md` complété
+- [ ] ADR 0004 à 0007 complétés (géolocalisation, hexagonale, données / RGPD, rendu)
 - [ ] `Architecture-cible.md` finalisé : budgets, organisation et salaires cohérents sur les 3 horizons
 - [ ] Conditions de déclenchement des extractions et renforts à 1 an documentées
 - [ ] Cohérence entre l'architecture actuelle et la cible 3 ans justifiée
