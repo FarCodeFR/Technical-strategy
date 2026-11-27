@@ -107,4 +107,4 @@ Faut-il garder, faire évoluer ou remplacer la stack actuelle (Next.js + Firebas
 
 - `../adr.md` — note de cadrage
 - `../Architecture-cible.md` — équipe et budget par horizon
-- ADR liés : 0002 (paiement), 0003 (infrastructure)
+- ADR liés : 0002 (paiement), 0003 (infrastructure), 0008 (benchmark comparatif de stacks, sur lequel s'appuie la décision)

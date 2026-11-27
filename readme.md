@@ -73,6 +73,7 @@ Performance · Compétences · Coût global · Support · Disponibilité · Fiab
         ├── 0005-architecture-hexagonale.md        # ADR-0005
         ├── 0006-donnees-personnelles-securite.md  # ADR-0006
         ├── 0007-strategie-de-rendu.md             # ADR-0007
+        ├── 0008-benchmark-stacks.md               # ADR-0008 (atelier 3)
         └── ...
 ```
 
@@ -93,6 +94,7 @@ Performance · Compétences · Coût global · Support · Disponibilité · Fiab
 | ADR-0005 — Architecture hexagonale | `docs/adr/0005-architecture-hexagonale.md` | 🟡 Gabarit posé — à compléter |
 | ADR-0006 — Données personnelles, sécurité, RGPD | `docs/adr/0006-donnees-personnelles-securite.md` | 🟡 Gabarit posé — à compléter |
 | ADR-0007 — Stratégie de rendu | `docs/adr/0007-strategie-de-rendu.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0008 — Benchmark comparatif de stacks (atelier 3) | `docs/adr/0008-benchmark-stacks.md` | 🟡 Gabarit posé — pondération à fixer, puis notation |
 | Restitution finale | — | ⚪ Séance 6 |
 
 Légende : 🔴 à faire · 🟡 en cours · 🟢 terminé · ⚪ non démarré
@@ -112,6 +114,7 @@ Les ADR portent sur les horizons **1 an** et **3 ans**, car les 6 mois sont déj
 | 0005 | Architecture hexagonale | Applicatif | Comment isoler le métier pour évoluer vers modulith puis microservices sans réécriture ? | Couches techniques · Hexagonale · Découpage par fonctionnalité | Proposée |
 | 0006 | Données personnelles, sécurité et RGPD | Applicatif | Comment protéger les données utilisateurs et respecter le RGPD ? | Firebase seul · Renfort applicatif · Délégation aux prestataires | Proposée |
 | 0007 | Stratégie de rendu des pages | Applicatif | Quel mode de rendu Next.js par type de page (pics ×10, SEO, fraîcheur) ? | Tout SSR · Tout SSG · Rendu par type de page | Proposée |
+| 0008 | Benchmark comparatif de stacks (atelier 3) | Applicatif | Quelle stack backend / hébergement retenir, selon des critères pondérés fixés avant la notation ? | Next.js + Firebase · Next.js + API + PostgreSQL sur conteneurs managés · Microservices sur Kubernetes | Proposée |
 
 > Ajouter une ligne à **chaque nouvel ADR**.
 
@@ -246,7 +249,7 @@ Critères de choix : performance, coût, sécurité, scalabilité, compétences,
 
 ## 10. Checklist de restitution
 
-### Pour chaque ADR (0001 à 0007)
+### Pour chaque ADR (0001 à 0008)
 
 - [ ] En-tête complet : **produit**, **type** (applicatif / fonctionnel), **statut**, **date du statut**, auteurs
 - [ ] **1. Contexte** : situation, contraintes, horizons 1 an et 3 ans
@@ -266,10 +269,11 @@ Critères de choix : performance, coût, sécurité, scalabilité, compétences,
 - [ ] `0005-architecture-hexagonale.md` complété
 - [ ] `0006-donnees-personnelles-securite.md` complété
 - [ ] `0007-strategie-de-rendu.md` complété
+- [ ] `0008-benchmark-stacks.md` complété : pondération fixée **avant** la notation, recommandation et conditions où elle serait fausse
 
 ### Dossier global
 
-- [ ] `docs/adr.md` à jour comme note de cadrage, renvoyant vers les ADR 0001 à 0007
+- [ ] `docs/adr.md` à jour comme note de cadrage, renvoyant vers les ADR 0001 à 0008
 - [ ] `Architecture-cible.md` finalisé : budgets, organisation et salaires cohérents sur les 3 horizons
 - [ ] Conditions de déclenchement des extractions et renforts à 1 an documentées
 - [ ] Cohérence entre l'architecture actuelle et la cible 3 ans justifiée
