@@ -6,7 +6,7 @@ Ce dépôt documente les **décisions d'architecture** de Looply sous forme d'AD
 
 - **Cours :** Stratégie technique — M2 Lead Developer Front-End, ECV Nantes (groupe B)
 - **Auteurs :** Julie (Produit / Business), Émilie (Architecte / Infra), Vic (Sécurité / Conformité), Timothé (Tech Lead)
-- **Dernière mise à jour :** 04/11/2026
+- **Dernière mise à jour :** 27/11/2026
 
 ---
 
@@ -66,9 +66,14 @@ Performance · Compétences · Coût global · Support · Disponibilité · Fiab
     ├── adr.md                                     # ADR global : contexte, besoins, options, décision
     ├── Architecture-cible.md                      # Architecture, équipe, budget à 6 mois / 1 an / 3 ans
     └── adr/
-        ├── 0001-choix-de-la-stack-technique.md    # ADR-0001
+        ├── 0001-stack-technique.md                 # ADR-0001
         ├── 0002-service-paiement.md               # ADR-0002
-        ├── 0003-infrastructure-kubernetes.md      # ADR-0003 (à créer)
+        ├── 0003-infrastructure-kubernetes.md      # ADR-0003
+        ├── 0004-geolocalisation.md                # ADR-0004
+        ├── 0005-architecture-hexagonale.md        # ADR-0005
+        ├── 0006-donnees-personnelles-securite.md  # ADR-0006
+        ├── 0007-strategie-de-rendu.md             # ADR-0007
+        ├── 0008-benchmark-stacks.md               # ADR-0008 (atelier 3)
         └── ...
 ```
 
@@ -78,14 +83,19 @@ Performance · Compétences · Coût global · Support · Disponibilité · Fiab
 
 ## 4. Livrables et avancement
 
-| Livrable                                        | Fichier                                        | Statut                                                         |
-| ----------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| ADR global (contexte, options, décision finale) | `docs/adr.md`                                  | 🟡 En cours — options 2 et 3 à compléter, décision à rédiger   |
-| Architecture cible 6 mois / 1 an / 3 ans        | `docs/Architecture-cible.md`                   | 🟡 En cours — budgets, déclencheurs et cible 3 ans à finaliser |
-| ADR-0001 — Choix de la stack technique          | `docs/adr/0001-choix-de-la-stack-technique.md` | 🔴 Fichier vide — à rédiger                                    |
-| ADR-0002 — Service de paiement                  | `docs/adr/0002-service-paiement.md`            | 🟡 Gabarit posé — à compléter                                  |
-| ADR-0003 — Infrastructure / Kubernetes          | `docs/adr/0003-infrastructure-kubernetes.md`   | ⚪ À créer                                                     |
-| Restitution finale                              | —                                              | ⚪ Séance 6                                                    |
+| Livrable | Fichier | Statut |
+| -------- | ------- | ------ |
+| ADR global (contexte, options, décision finale) | `docs/adr.md` | 🟡 En cours — options 2 et 3 à compléter, décision à rédiger |
+| Architecture cible 6 mois / 1 an / 3 ans | `docs/Architecture-cible.md` | 🟡 En cours — budgets, déclencheurs et cible 3 ans à finaliser |
+| ADR-0001 — Choix de la stack technique | `docs/adr/0001-stack-technique.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0002 — Service de paiement | `docs/adr/0002-service-paiement.md` | 🟡 Contexte rédigé — parties prenantes, options et décision à compléter |
+| ADR-0003 — Infrastructure / Kubernetes | `docs/adr/0003-infrastructure-kubernetes.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0004 — Géolocalisation | `docs/adr/0004-geolocalisation.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0005 — Architecture hexagonale | `docs/adr/0005-architecture-hexagonale.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0006 — Données personnelles, sécurité, RGPD | `docs/adr/0006-donnees-personnelles-securite.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0007 — Stratégie de rendu | `docs/adr/0007-strategie-de-rendu.md` | 🟡 Gabarit posé — à compléter |
+| ADR-0008 — Benchmark comparatif de stacks (atelier 3) | `docs/adr/0008-benchmark-stacks.md` | 🟡 Gabarit posé — pondération à fixer, puis notation |
+| Restitution finale | — | ⚪ Séance 6 |
 
 Légende : 🔴 à faire · 🟡 en cours · 🟢 terminé · ⚪ non démarré
 
@@ -95,15 +105,19 @@ Légende : 🔴 à faire · 🟡 en cours · 🟢 terminé · ⚪ non démarré
 
 Les ADR portent sur les horizons **1 an** et **3 ans**, car les 6 mois sont déjà réalisés. Un ADR est créé pour **chaque élément de décision identifié dans `docs/adr.md`** :
 
-| N°   | Titre                         | Question à trancher                                                                  | Options à comparer                                                                                  | Statut    |
-| ---- | ----------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | --------- |
-| 0001 | Choix de la stack technique   | Garder, faire évoluer ou remplacer la stack actuelle selon l'horizon (1 an, 3 ans) ? | Next.js + Firebase (monolithe) · Modulith · Microservices                                           | À rédiger |
-| 0002 | Service de paiement           | Construire ou déléguer le paiement (PSD2, pics ×10, équipe de 6 devs) ?              | Paiement dans le monolithe · Prestataire (Stripe Connect, Mangopay, PayPal) · Service interne dédié | Proposé   |
-| 0003 | Infrastructure et scalabilité | Comment absorber les pics ×10 et suivre l'application en direct ?                    | Hébergement managé actuel · Kubernetes (pods, dashboard temps réel) · Autre approche managée        | À créer   |
+| N°   | Titre | Type | Question à trancher | Options à comparer | Statut |
+| ---- | ----- | ---- | ------------------- | ------------------ | ------ |
+| 0001 | Choix de la stack technique | Applicatif | Garder, faire évoluer ou remplacer la stack actuelle selon l'horizon (1 an, 3 ans) ? | Next.js + Firebase (monolithe) · Modulith · Microservices | Proposée |
+| 0002 | Service de paiement | Applicatif | Construire ou déléguer le paiement (PSD2, pics ×10, équipe de 6 devs) ? | Paiement dans le monolithe · Prestataire (Stripe Connect, Mangopay, PayPal) · Service interne dédié | Proposée |
+| 0003 | Infrastructure et scalabilité | Applicatif | Comment absorber les pics ×10 et suivre l'application en direct ? | Hébergement managé actuel · Kubernetes · Autre approche managée | Proposée |
+| 0004 | Géolocalisation et recherche de proximité | Fonctionnel | Comment proposer une recherche par distance sans exposer l'adresse exacte ? | Geohash Firestore · Base géospatiale dédiée · API externe + recherche maison | Proposée |
+| 0005 | Architecture hexagonale | Applicatif | Comment isoler le métier pour évoluer vers modulith puis microservices sans réécriture ? | Couches techniques · Hexagonale · Découpage par fonctionnalité | Proposée |
+| 0006 | Données personnelles, sécurité et RGPD | Applicatif | Comment protéger les données utilisateurs et respecter le RGPD ? | Firebase seul · Renfort applicatif · Délégation aux prestataires | Proposée |
+| 0007 | Stratégie de rendu des pages | Applicatif | Quel mode de rendu Next.js par type de page (pics ×10, SEO, fraîcheur) ? | Tout SSR · Tout SSG · Rendu par type de page | Proposée |
+| 0008 | Benchmark comparatif de stacks (atelier 3) | Applicatif | Quelle stack backend / hébergement retenir, selon des critères pondérés fixés avant la notation ? | Next.js + Firebase · Next.js + API + PostgreSQL sur conteneurs managés · Microservices sur Kubernetes | Proposée |
 
 > Ajouter une ligne à **chaque nouvel ADR**.
 
-**Pistes complémentaires** (si le temps le permet) : architecture interne hexagonale, stratégie de rendu par type de page, géolocalisation, sécurité et conformité des données.
 
 ---
 
@@ -111,51 +125,68 @@ Les ADR portent sur les horizons **1 an** et **3 ans**, car les 6 mois sont déj
 
 ### Statuts
 
-`Proposé` → `Accepté` → `Remplacé` (ou `Déprécié`)
+`Proposée` → `À valider` → `Validée` (puis `Remplacée` ou `Dépréciée`)
+
+- **Proposée** : rédaction en cours par l'auteur
+- **À valider** : relecture par le groupe
+- **Validée** : décision adoptée collectivement
+
+La **date du statut** est mise à jour à chaque changement de statut.
+
+### Types
+
+- **Applicatif** : décision technique (stack, infrastructure, architecture…)
+- **Fonctionnel** : décision liée au métier ou au produit (parcours, règles de gestion…)
 
 ### Règle d'immutabilité
 
-**Un ADR accepté n'est jamais modifié.** Pour changer une décision, on écrit un **nouvel ADR** qui remplace l'ancien :
+**Un ADR validé n'est jamais modifié.** Pour changer une décision, on écrit un **nouvel ADR** qui remplace l'ancien :
 
 - le nouvel ADR indique la **date** et le **lien** vers l'ADR remplacé ;
-- l'ancien passe au statut `Remplacé` et pointe vers le nouveau (« Remplacé par ADR-XXXX »).
+- l'ancien passe au statut `Remplacée` et pointe vers le nouveau (« Remplacée par ADR-XXXX »).
 
 ### Gabarit
 
 ```markdown
 # ADR-NNNN : Titre de la décision
 
-- **Statut** : Proposé | Accepté | Remplacé par ADR-XXXX | Déprécié
-- **Date** : AAAA-MM-JJ
+- **Produit** : Looply
+- **Type** : Applicatif | Fonctionnel
+- **Statut** : Proposée | À valider | Validée | Remplacée par ADR-XXXX | Dépréciée
+- **Date du statut** : AAAA-MM-JJ
 - **Auteurs** : …
 
-## Contexte et contraintes
+## 1. Contexte
 
 Situation, besoins, contraintes (pics ×10, équipe, budget, conformité…).
 
-## Critères de décision
+## 2. Parties prenantes
 
-Performance, coût, sécurité, scalabilité, compétences, support…
+Qui est concerné et qui valide (Produit, Architecture / Infra, Sécurité, Tech Lead, devs…).
 
-## Options envisagées
+## 3. Énoncé du problème
+
+La question précise à trancher, en une ou deux phrases.
+
+## 4. Facteurs de décision
+
+Critères de choix : performance, coût, sécurité, scalabilité, compétences, support…
+
+## 5. Options envisagées
 
 1. Option A — description courte
 2. Option B — description courte
 3. Option C — description courte
 
-## Comparatif
-
 | Critère | Option A | Option B | Option C |
 | ------- | -------- | -------- | -------- |
 
-## Décision retenue
+## 6. Décision prise et impacts
 
-Option X, parce que… (argumentation reliée aux critères)
+**Option retenue :** Option X, parce que… (argumentation reliée aux facteurs de décision)
 
-## Conséquences
-
-- Positives : …
-- Négatives / risques : …
+- Impacts positifs : …
+- Impacts négatifs / risques : …
 - Condition de réexamen : …
 ```
 
@@ -202,9 +233,9 @@ Option X, parce que… (argumentation reliée aux critères)
 
 1. **Créer une branche** : `adr/NNNN-titre-court`
 2. **Copier le gabarit** (§ 6) dans `docs/adr/NNNN-titre-court.md`
-3. **Rédiger** l'ADR avec le statut `Proposé`
-4. **Relecture** par au moins un autre membre du groupe (Tech Lead pour la cohérence globale)
-5. **Passer le statut à `Accepté`** après validation collective
+3. **Rédiger** l'ADR avec le statut `Proposée`
+4. **Passer le statut à `À valider`** : relecture par au moins un autre membre du groupe (Tech Lead pour la cohérence globale)
+5. **Passer le statut à `Validée`** après validation collective (mettre à jour la date du statut)
 6. **Mettre à jour** le registre (§ 5) et l'avancement (§ 4)
 
 | Rôle                  | Responsabilité                                                 |
@@ -218,15 +249,36 @@ Option X, parce que… (argumentation reliée aux critères)
 
 ## 10. Checklist de restitution
 
-- [ ] `docs/adr.md` complet : options 1 à 3 détaillées et **décision finale** renseignée
-- [ ] Un ADR rédigé et statué pour **chaque élément** du registre (§ 5)
-- [ ] `0001-choix-de-la-stack-technique.md` complété
-- [ ] `0002-service-paiement.md` complété (option retenue, conséquences, réexamen)
-- [ ] ADR infrastructure / Kubernetes créé
+### Pour chaque ADR (0001 à 0008)
+
+- [ ] En-tête complet : **produit**, **type** (applicatif / fonctionnel), **statut**, **date du statut**, auteurs
+- [ ] **1. Contexte** : situation, contraintes, horizons 1 an et 3 ans
+- [ ] **2. Parties prenantes** : rôle et intérêt de chacun dans la décision
+- [ ] **3. Énoncé du problème** : une question précise à trancher
+- [ ] **4. Facteurs de décision** : critères reliés aux 5 axes d'analyse
+- [ ] **5. Options envisagées** : au moins deux options réelles, avec avantages, inconvénients et comparatif
+- [ ] **6. Décision prise et impacts** : option retenue justifiée par les critères, impacts positifs et négatifs, condition de réexamen
+- [ ] Statut passé à **Validée** après relecture du groupe (date du statut mise à jour)
+
+### Avancement des ADR
+
+- [ ] `0001-stack-technique.md` complété
+- [ ] `0002-service-paiement.md` complété
+- [ ] `0003-infrastructure-kubernetes.md` complété
+- [ ] `0004-geolocalisation.md` complété
+- [ ] `0005-architecture-hexagonale.md` complété
+- [ ] `0006-donnees-personnelles-securite.md` complété
+- [ ] `0007-strategie-de-rendu.md` complété
+- [ ] `0008-benchmark-stacks.md` complété : pondération fixée **avant** la notation, recommandation et conditions où elle serait fausse
+
+### Dossier global
+
+- [ ] `docs/adr.md` à jour comme note de cadrage, renvoyant vers les ADR 0001 à 0008
 - [ ] `Architecture-cible.md` finalisé : budgets, organisation et salaires cohérents sur les 3 horizons
 - [ ] Conditions de déclenchement des extractions et renforts à 1 an documentées
 - [ ] Cohérence entre l'architecture actuelle et la cible 3 ans justifiée
 - [ ] Les 5 axes d'analyse couverts : **scalabilité** (pics ×10), **fiabilité**, **sécurité**, **évolution métier** (paiement), **maintenabilité** (équipe de 6 devs)
-- [ ] Registre des ADR à jour et liens entre fichiers vérifiés
+- [ ] Chiffres cohérents entre les fichiers (nombre de devs, salaires, budget)
+- [ ] Registre (§ 5) et avancement (§ 4) à jour, liens entre fichiers vérifiés
 - [ ] Orthographe relue (ex. « Kubernetes », « PayPal »)
 - [ ] Support de restitution préparé pour la séance 6
