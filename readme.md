@@ -246,17 +246,35 @@ Critères de choix : performance, coût, sécurité, scalabilité, compétences,
 
 ## 10. Checklist de restitution
 
-- [ ] `docs/adr.md` complet : options 1 à 3 détaillées et **décision finale** renseignée
-- [ ] Un ADR rédigé et statué pour **chaque élément** du registre (§ 5)
+### Pour chaque ADR (0001 à 0007)
+
+- [ ] En-tête complet : **produit**, **type** (applicatif / fonctionnel), **statut**, **date du statut**, auteurs
+- [ ] **1. Contexte** : situation, contraintes, horizons 1 an et 3 ans
+- [ ] **2. Parties prenantes** : rôle et intérêt de chacun dans la décision
+- [ ] **3. Énoncé du problème** : une question précise à trancher
+- [ ] **4. Facteurs de décision** : critères reliés aux 5 axes d'analyse
+- [ ] **5. Options envisagées** : au moins deux options réelles, avec avantages, inconvénients et comparatif
+- [ ] **6. Décision prise et impacts** : option retenue justifiée par les critères, impacts positifs et négatifs, condition de réexamen
+- [ ] Statut passé à **Validée** après relecture du groupe (date du statut mise à jour)
+
+### Avancement des ADR
+
 - [ ] `0001-stack-technique.md` complété
-- [ ] `0002-service-paiement.md` complété (option retenue, impacts, réexamen)
-- [x] ADR infrastructure / Kubernetes créé
+- [ ] `0002-service-paiement.md` complété
 - [ ] `0003-infrastructure-kubernetes.md` complété
-- [ ] ADR 0004 à 0007 complétés (géolocalisation, hexagonale, données / RGPD, rendu)
+- [ ] `0004-geolocalisation.md` complété
+- [ ] `0005-architecture-hexagonale.md` complété
+- [ ] `0006-donnees-personnelles-securite.md` complété
+- [ ] `0007-strategie-de-rendu.md` complété
+
+### Dossier global
+
+- [ ] `docs/adr.md` à jour comme note de cadrage, renvoyant vers les ADR 0001 à 0007
 - [ ] `Architecture-cible.md` finalisé : budgets, organisation et salaires cohérents sur les 3 horizons
 - [ ] Conditions de déclenchement des extractions et renforts à 1 an documentées
 - [ ] Cohérence entre l'architecture actuelle et la cible 3 ans justifiée
 - [ ] Les 5 axes d'analyse couverts : **scalabilité** (pics ×10), **fiabilité**, **sécurité**, **évolution métier** (paiement), **maintenabilité** (équipe de 6 devs)
-- [ ] Registre des ADR à jour et liens entre fichiers vérifiés
+- [ ] Chiffres cohérents entre les fichiers (nombre de devs, salaires, budget)
+- [ ] Registre (§ 5) et avancement (§ 4) à jour, liens entre fichiers vérifiés
 - [ ] Orthographe relue (ex. « Kubernetes », « PayPal »)
 - [ ] Support de restitution préparé pour la séance 6
